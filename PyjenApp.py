@@ -16,8 +16,8 @@ class PyjenApp:
 		return server
 
 
-obj = PyjenApp()
-obj.get_version('http://160.153.231.66:8080', 'jenkins_admin', 'f525b32a5a42ddb819a2c59f5599c915')
+obj = PyjenApp('jenkins_admin', 'f525b32a5a42ddb819a2c59f5599c915')
+obj.get_jenkins_jobs()
 
 	
 
