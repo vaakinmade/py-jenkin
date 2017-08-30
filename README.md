@@ -1,4 +1,4 @@
-### 1 Install Python 2.7/3.4.3 and Django Framework > 1.10
+### 1 Install Python 2.7/3.5 and Django Framework > 1.10
 
 Python 2.7.x/3.5.x https://www.python.org/downloads/
 
