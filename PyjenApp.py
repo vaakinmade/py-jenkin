@@ -32,12 +32,17 @@ class PyjenApp:
 
 
 	def get_jenkins_jobs(self):
-		server = self.connect_to_jenkins(self.username,	self.token) 
-		jobs = server.get_jobs()
-		timestamp = '{:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now())
+		server = self.connect_to_jenkins(self.username,	self.token)
+		try: 
+			jobs = server.get_jobs()
+		except jenkins.JenkinsException as e:
+			print(e)
+			jobs = None
 
-		for each in jobs:
-			each.update({"checked_at":timestamp})
+		if type(jobs) is list:
+			timestamp = '{:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now())
+			for each in jobs:
+				each.update({"checked_at":timestamp})
 		return jobs
 
 	def connect_to_jenkins(self, username, token):
