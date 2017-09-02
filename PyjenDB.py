@@ -8,14 +8,15 @@ import sqlite3 as lite
 
 class PyjenDB():
 	
-	def __init__(self):       
+	def __init__(self, jobs):       
 		self.db = lite.connect('jenkins.db')
 		self.db.row_factory = lite.Row        
 		self.db.execute('''CREATE TABLE IF NOT EXISTS Jobs
 							(Name TEXT, Class TEXT, Url TEXT,
 							Status TEXT, Checked_at TEXT)''')
+		self._save(jobs)
 
-	def save(self, jobs):
+	def _save(self, jobs):
 		status = ""
 		for job in jobs:
 			if job['color'] == "blue":
